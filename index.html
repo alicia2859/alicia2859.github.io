@@ -1,101 +1,376 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>NOVE Project</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE-Tracker - Offline-First Study Planner &amp; Timer for JEE 2027</title>
+    <meta name="description" content="Download JEE-Tracker - the modular, offline-first study tracker for JEE 2027/2028. Precision timer, syllabus planner, mock test analytics, study reports, and cross-device sync. Free PWA for Windows.">
+    <meta name="keywords" content="JEE tracker, JEE 2027 study planner, JEE 2028 preparation, offline study app, JEE timer, mock test analytics, PWA, Windows study app, chemistry tracker, physics planner, maths study tool, class 12 exam prep">
+    <meta name="author" content="Alicia2859">
+    <meta property="og:title" content="JEE-Tracker - Your Personal JEE 2027 Study Command Center">
+    <meta property="og:description" content="Track every hour, plan every chapter, ace every mock test. Download the offline-first PWA that keeps you organized and motivated.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/alicia2859/JEE-Tracker">
+    <meta name="robots" content="index, follow">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            line-height: 1.7;
+            color: #1a1a2e;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0 10px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            color: #16213e;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .tagline {
+            font-size: 1.4rem;
+            color: #0f3460;
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #e94560;
+            color: white !important;
+            padding: 18px 45px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 20px 0 30px;
+            letter-spacing: 0.5px;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(233, 69, 96, 0.5);
+        }
+        .download-btn-top {
+            background: linear-gradient(135deg, #0f3460, #533483);
+            box-shadow: 0 8px 20px rgba(15, 52, 96, 0.4);
+        }
+        .download-btn-top:hover {
+            box-shadow: 0 12px 25px rgba(15, 52, 96, 0.6);
+        }
+        h2 {
+            font-size: 2rem;
+            color: #16213e;
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e94560;
+            display: inline-block;
+            font-weight: 700;
+        }
+        h3 {
+            font-size: 1.4rem;
+            color: #0f3460;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        ul {
+            margin: 0 0 25px 30px;
+            list-style-type: none;
+        }
+        ul li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            padding-left: 35px;
+            position: relative;
+        }
+        ul li::before {
+            content: "✓";
+            color: #e94560;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 0;
+            font-size: 1.3rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .feature-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+            color: #16213e;
+        }
+        .feature-card ul {
+            margin: 0;
+            padding-left: 0;
+        }
+        .feature-card ul li {
+            padding-left: 20px;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .feature-card ul li::before {
+            font-size: 1rem;
+            left: 0;
+        }
+        .download-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin: 50px 0;
+            text-align: center;
+        }
+        .download-section h2 {
+            border-bottom: none;
+            margin-top: 0;
+            display: block;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #0f3460;
+            color: white !important;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(15, 52, 96, 0.3);
+            margin: 20px 0;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .download-btn:hover {
+            background: #16213e;
+            transform: scale(1.02);
+        }
+        .download-instruction {
+            background: #f0f4f8;
+            padding: 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            border-left: 5px solid #e94560;
+            text-align: left;
+        }
+        .setup-steps {
+            text-align: left;
+            margin: 30px 0;
+        }
+        .setup-steps ol {
+            margin-left: 30px;
+        }
+        .setup-steps li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            padding-left: 5px;
+        }
+        .setup-steps li::marker {
+            color: #e94560;
+            font-weight: bold;
+        }
+        .note-box {
+            background: #fff8e1;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 5px solid #ffb300;
+            margin: 25px 0;
+            font-size: 1rem;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #0f3460;
+            font-size: 1rem;
+        }
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .badge {
+            background: #16213e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+            }
+            .download-instruction {
+                font-size: 1rem;
+            }
+            .download-section {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <header>
+            <h1>📘 JEE-Tracker - Master Your JEE Prep Daily</h1>
+            <p class="tagline">Plan, track, analyze, sync, and succeed.</p>
+            <div class="badge-row">
+                <span class="badge">⚛️ Physics</span>
+                <span class="badge">🧪 Chemistry</span>
+                <span class="badge">📐 Maths</span>
+                <span class="badge">🎯 JEE 2027 &amp; 2028</span>
+                <span class="badge">💻 Windows</span>
+            </div>
+            <a href="https://github.com/alicia2859/JEE-Tracker/releases" class="cta-btn download-btn-top" style="background: linear-gradient(135deg,#006d77,#2d6a4f); box-shadow: 0 8px 20px rgba(0,109,119,0.4);">⬇️ Download JEE-Tracker Now</a>
+            <p style="max-width: 700px; margin: 0 auto; font-size: 1.15rem;">Your all-in-one offline-first companion for JEE 2027/2028 preparation. Precision timer, syllabus planner, mock test analytics, and study reports — all in one elegant PWA.</p>
+        </header>
 
-<!-- Фон: CSS-градиент + сетка. Картинка (если задана в config.js) подставляется сверху из JS,
-     и только после того, как реально загрузилась — битой картинки больше не будет. -->
-<div id="background"></div>
-<div id="backgroundImage"></div>
-<div id="overlay"></div>
+        <h2>🚀 Why JEE-Tracker?</h2>
+        <p>JEE preparation is a marathon, not a sprint. The difference between a rank and an also-ran comes down to consistent, measured daily effort. JEE-Tracker is built specifically for aspirants like you who want to leave nothing to chance. It's your personal command center for every chapter, every mock test, and every study hour.</p>
 
-<div id="content">
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="emoji">⏱️</div>
+                <h3>Precision Timer</h3>
+                <ul>
+                    <li>Accurate stopwatch &amp; session timer</li>
+                    <li>Auto-log your study sessions</li>
+                    <li>Pomodoro-style focus intervals</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">📅</div>
+                <h3>Smart Planner</h3>
+                <ul>
+                    <li>Modular daily/weekly plans</li>
+                    <li>Chapter-wise syllabus tracker</li>
+                    <li>Smart reminders for deadlines</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">📊</div>
+                <h3>Mock Test Analytics</h3>
+                <ul>
+                    <li>Detailed performance breakdown</li>
+                    <li>Topic-wise strength/weakness maps</li>
+                    <li>Score trends &amp; percentile estimates</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">📈</div>
+                <h3>Study Reports</h3>
+                <ul>
+                    <li>Weekly &amp; monthly productivity reports</li>
+                    <li>Time allocation pie charts</li>
+                    <li>Goal completion rates</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">☁️</div>
+                <h3>Firebase Sync</h3>
+                <ul>
+                    <li>Cross-device data sync</li>
+                    <li>Secure auth via Firebase</li>
+                    <li>No data loss, ever</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">📴</div>
+                <h3>Offline-First PWA</h3>
+                <ul>
+                    <li>100% works without internet</li>
+                    <li>Installable on any device</li>
+                    <li>Lightning-fast vanilla JS</li>
+                </ul>
+            </div>
+        </div>
 
-    <div id="logoWrap">
+        <h2>📥 Download &amp; Install Guide</h2>
+        <div class="download-section">
+            <p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Get JEE-Tracker for Windows</strong></p>
+            <a href="https://github.com/alicia2859/JEE-Tracker/releases" class="download-btn">⬇️ Download Now from GitHub Releases</a>
+            <div class="download-instruction">
+                <strong>How this works:</strong> Visit this link to download the application.<br>
+                Once on the GitHub releases page, find the latest release (look for "Latest" tag). You'll see the application files listed there. Click the file to download it to your computer (usually goes to your "Downloads" folder).<br>
+                Your browser will show a download progress. When done, you can open the file to start using JEE-Tracker.
+            </div>
+            <h3 style="margin-top: 30px;">Installation Steps</h3>
+            <div class="setup-steps">
+                <ol>
+                    <li><strong>Click the download button above</strong> — you'll be taken to the GitHub Releases page.</li>
+                    <li><strong>Find the newest version</strong> — usually labeled "Latest" at the top of the list.</li>
+                    <li><strong>Click the file to download</strong> — your browser will save the file to your Downloads folder.</li>
+                    <li><strong>Open the downloaded file</strong> — double-click it once it's finished downloading.</li>
+                    <li><strong>Follow any on-screen prompts</strong> — if asked, accept the license and choose a folder (default is fine).</li>
+                    <li><strong>Launch JEE-Tracker</strong> — a shortcut icon will appear on your desktop or start menu.</li>
+                    <li><strong>Start your first session</strong> — create a free account (optional) to enable sync, or start planning offline instantly.</li>
+                </ol>
+            </div>
+            <div class="note-box">
+                💡 <strong>No tech skills needed:</strong> The entire process is just like downloading and installing any other app. If you can use a browser and a mouse, you can handle it. No coding, no command line, no developer tools required.
+            </div>
+        </div>
 
-        <!-- Встроенный SVG-логотип. Работает всегда, файлов не требует.
-             Если в config.js указан logo — сюда подставится <img>, но только при успешной загрузке. -->
-        <svg id="logoMark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="NOVE">
-            <defs>
-                <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop class="gradStop1" offset="0"></stop>
-                    <stop class="gradStop2" offset="1"></stop>
-                </linearGradient>
-            </defs>
-            <circle class="ring" cx="60" cy="60" r="53"></circle>
-            <circle class="disc" cx="60" cy="60" r="45"></circle>
-            <path class="letter" d="M43 83 V37 L77 83 V37"></path>
-            <path class="rail" d="M31 97 H89"></path>
-        </svg>
+        <h2>✨ Core Features &amp; Benefits</h2>
+        <p>JEE-Tracker is not just another study app. It's a carefully crafted tool that respects your time and gives you meaningful insights. Here's what makes it special:</p>
+        <h3>🔬 Subject-Specific Modules</h3>
+        <p>Every module is tuned for the three JEE pillars: Physics, Chemistry, and Mathematics. Each subject has pre-populated chapter lists from the Class 12 NCERT syllabus, so you don't waste time building everything from scratch.</p>
+        <h3>📱 True Cross-Device Flexibility</h3>
+        <p>Works offline on your laptop, phone, or tablet. When you're back online, Firebase syncs everything automatically. Your progress is always safe, across every device you own.</p>
+        <h3>🔔 Smart Notifications &amp; Goals</h3>
+        <p>Set daily target hours, weekly chapter goals, and mock test deadlines. JEE-Tracker gently reminds you to stay on track, so you never miss a day again.</p>
 
-    </div>
+        <h2>🎯 Who Is This For?</h2>
+        <ul>
+            <li><strong>JEE 2027 &amp; 2028 aspirants</strong> — specifically designed for your exam cycle.</li>
+            <li><strong>Class 12 students</strong> — covering physics, chemistry, and maths with chapter-level granularity.</li>
+            <li><strong>Students who dislike complicated tools</strong> — clean, minimal, and intuitive interface.</li>
+            <li><strong>Students with inconsistent internet</strong> — offline-first design means zero interruptions.</li>
+            <li><strong>Any serious test-taker</strong> — who wants data-driven study improvements.</li>
+        </ul>
 
-    <h1 id="serverName">NOVE PROJECT</h1>
+        <h2>🔒 Privacy &amp; Data</h2>
+        <p>Your study data is yours. Everything is stored locally first. If you choose to enable sync, your data is protected with Firebase Authentication (Google or email login). We don't sell data, we don't show ads, and we don't track you. Period.</p>
 
-    <p id="subtitle">Добро пожаловать.</p>
-
-    <div id="serverMeta">
-        <span class="metaItem" id="metaMap" hidden></span>
-        <span class="metaItem" id="metaGamemode" hidden></span>
-        <span class="metaItem" id="metaPlayers" hidden></span>
-    </div>
-
-</div>
-
-
-<div id="loadingPanel">
-
-    <div id="statusRow">
-        <div id="status">Подключение к серверу...</div>
-        <div id="percent">—</div>
-    </div>
-
-    <div id="bar" class="indeterminate">
-        <div id="progress"><div id="shine"></div></div>
-    </div>
-
-    <div id="detailRow">
-        <div id="fileCount"></div>
-    </div>
-
-</div>
-
-
-<div id="news">
-
-    <div class="title">Новости</div>
-
-    <ul id="newsList"></ul>
-
-</div>
-
-
-<div id="footer">
-
-    <div id="version">
-        <strong id="footerName">NOVE Project</strong>
-        <br>
-        <span id="footerVersion">Version 1.0</span>
-    </div>
-
-    <div id="tip">Совет: Соблюдайте интервалы движения.</div>
-
-    <div id="links"></div>
-
-</div>
-
-<script src="config.js"></script>
-<script src="script.js"></script>
-
-</body>
-</html>
+        <h2>❓ Frequently Asked Questions</h2>
+        <h3>Q
